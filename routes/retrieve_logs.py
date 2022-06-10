@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify, make_response, request
 
-from ..models.click_action import ClickAction
-from ..models.view_action import ViewAction
-from ..models.navigate_action import NavigateAction
-from ..extensions import db
+from models.click_action import ClickAction
+from models.view_action import ViewAction
+from models.navigate_action import NavigateAction
+from extensions import db
 
 retrieveLogs = Blueprint('retrieveLogs', __name__)
 

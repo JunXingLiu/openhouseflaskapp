@@ -1,10 +1,10 @@
 from flask import Blueprint, copy_current_request_context, jsonify, make_response, request
 import threading
 
-from ..models.click_action import ClickAction
-from ..models.view_action import ViewAction
-from ..models.navigate_action import NavigateAction
-from ..extensions import db
+from models.click_action import ClickAction
+from models.view_action import ViewAction
+from models.navigate_action import NavigateAction
+from extensions import db
 
 submitLogs = Blueprint('submitLogs', __name__)
 
