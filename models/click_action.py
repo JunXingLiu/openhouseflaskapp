@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from ..extensions import db
+from extensions import db
 
 @dataclass
 class ClickAction(db.Model):

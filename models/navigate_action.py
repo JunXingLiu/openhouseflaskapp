@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from dataclasses import dataclass
 
-from ..extensions import db
+from extensions import db
 
 @dataclass
 class NavigateAction(db.Model):
