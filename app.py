@@ -1,8 +1,8 @@
 from flask import Flask
 
-from .extensions import db
-from .routes.submit_logs import submitLogs
-from .routes.retrieve_logs import retrieveLogs
+from extensions import db
+from routes.submit_logs import submitLogs
+from routes.retrieve_logs import retrieveLogs
 
 def create_app():
     app = Flask(__name__)
