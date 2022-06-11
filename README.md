@@ -14,8 +14,10 @@
 | `toTime`  | `string` | 
 
 * Since we are processing up to 100 users every 5 mins, I have decided to create a thread for each request for faster processing time. 
-* The function processes 3 type of logs: click, view and navigate and stores in a sqlite3 database(In the real world, S3 or any other NoSQL DB would be ideal for storing data with different structure). 
-* The function accepts all request and returns a submitted message to the client but will skip any logs with an invalid error type(accepted: click, view, navigate).
+* The function processes 3 type of logs: click, view and navigate and stores in a sqlite3 database. In the real world, we could:
+    *  NoSQL, data strucure is not uniformed.  
+    *  Use S3 to store the log files and AWS Athena to process and analyze the data.
+* The function accepts all request and returns a submitted message to the client but will skip any logs with an invalid log type(accepted: click, view, navigate).
 ---
 
 ``` http
@@ -62,5 +64,16 @@
         - 'python3 test.py'
 
 # Follow up question:
-To make it more scalable in the cloud, rather than saving all the individual database to reduce storage cost, we could store the logs from each session as a single log file and store the a Primary Key consists of UserId + SessionId, We can use AWS Kinesis to capture the data and store it in S3 and for stream a large amount of data, we can potentially use AWS Athena to query the S3 bucket since it can process the logs files as text. 
+I would deploy the main applicaiton to an ECS, it pushes logs to a SQS which will then trigger a lambda function to store it in DynamoDB. 
+  * We use a lambda function because it is integrated with CloudWatch logs to monitor any errors. 
+  * We use a SQS to prevent and data loss due to transient network issue, it has Dead Letter Queue, it also can add any failed process to a DLQ for retry.
+  * We use ECS to allow auto scaling
+  * We use DynamoDB to store not uniform data
+  * All of the above resources can be managed by CloudFormation to easily deploy to various environment(dev, beta, uat, prod, etc), by doing it this way, we can ensure consistency between environments
+
+To stream large amount of data to client, we can use AWS Kinesis to batch process the DynamoDB Stream and feed it into a Amazon Open Search so that any data can be easily queried by the client. 
+
+ We can use AWS App Config to store any environment variable to avoid any running application if we need to modify any variable
+  
+ We can use CodePipeline for continous development
 
