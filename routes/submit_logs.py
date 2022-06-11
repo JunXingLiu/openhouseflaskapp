@@ -6,14 +6,15 @@ from models.view_action import ViewAction
 from models.navigate_action import NavigateAction
 from extensions import db
 
-submitLogs = Blueprint('submitLogs', __name__)
+submitLogs = Blueprint('/api/submitLogs', __name__)
 
-@submitLogs.route('/submitlogs', methods=['POST'])
+@submitLogs.route('/api/submitlogs', methods=['POST'])
 def create_logs():
     @copy_current_request_context
     def create_logs_task():
         data = request.get_json()
         create_log_entries(data)
+
     threading.Thread(target=create_logs_task).start()
     return make_response(jsonify({'status': 'logs submitted'}), 200)
 

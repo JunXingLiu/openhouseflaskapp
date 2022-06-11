@@ -5,9 +5,9 @@ from models.view_action import ViewAction
 from models.navigate_action import NavigateAction
 from extensions import db
 
-retrieveLogs = Blueprint('retrieveLogs', __name__)
+retrieveLogs = Blueprint('/api/retrieveLogs', __name__)
 
-@retrieveLogs.route('/retrievelogs', methods=['GET'])
+@retrieveLogs.route('/api//retrievelogs', methods=['GET'])
 def retrieve_logs():
     userId = request.args.get('userId')
     logType = request.args.get('logType')
