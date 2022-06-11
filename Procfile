@@ -1,1 +1,1 @@
-web: gunicorn openhouseflaskapp:app
+web: gunicorn app:app
