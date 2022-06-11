@@ -13,6 +13,26 @@
 | `fromTime`| `string` | 
 | `toTime`  | `string` | 
 
+Response
+```
+[
+    {
+        "_locationX": "52",
+        "_locationY": "11",
+        "_sessionId": "XYZ456ABC",
+        "_time": "2018-10-20T21:37:28-06:00",
+        "_userId": "CBC123XYZ"
+    },
+    {
+        "_locationX": "1",
+        "_locationY": "2",
+        "_sessionId": "ABC123XYZ",
+        "_time": "2018-10-19T00:00:00.000Z",
+        "_userId": "CBC123XYZ"
+    }
+]
+```
+
 * Since we are processing up to 100 users every 5 mins, I have decided to create a thread for each request for faster processing time. 
 * The function processes 3 type of logs: click, view and navigate and stores in a sqlite3 database. In the real world, we could:
     *  NoSQL, data strucure is not uniformed.  
