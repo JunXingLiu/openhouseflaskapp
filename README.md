@@ -36,7 +36,7 @@ Response
 * Since we are processing up to 100 users every 5 mins, I have decided to create a thread for each request for faster processing time. 
 * The function processes 3 type of logs: click, view and navigate and stores in a sqlite3 database. In the real world, we could:
     *  NoSQL, data strucure is not uniformed.  
-    *  Use S3 to store the log files and AWS Athena to process and analyze the data.
+    *  Use S3 to store the log files and use AWS Athena to process and analyze the data.
 * The function accepts all request and returns a submitted message to the client but will skip any logs with an invalid log type(accepted: click, view, navigate).
 ---
 
