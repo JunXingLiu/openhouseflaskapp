@@ -10,6 +10,8 @@ submitLogs = Blueprint('/api/submitLogs', __name__)
 
 @submitLogs.route('/api/submitlogs', methods=['POST'])
 def create_logs():
+    if hasattr(request, 'data'):
+        return make_response(jsonify({'error': 'No data provided'}), 400)
     @copy_current_request_context
     def create_logs_task():
         data = request.get_json()
